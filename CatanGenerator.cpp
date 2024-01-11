@@ -1,5 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 // hold the number and resource of hex
@@ -58,5 +62,9 @@ int main (){
     numbers.push_back(11); numbers.push_back(11);
 
     // create logic
+    int t = time(0);
+    srand(t);
 
+    cout << rand() % 21 << endl;
+    
 }
