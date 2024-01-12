@@ -23,6 +23,17 @@ void print_hexx(hexx h){
     cout << "      *     " << endl;
 }
 
+// check if a number is in vector
+bool is_in(vector<int> v, int r){
+    for (auto i : v){
+        if (i == r){
+            return true;
+        }    
+    }
+
+    return false;
+}
+
 int main (){
     cout << "~ GOT Catan Randomizer ~" << endl;
 
@@ -65,6 +76,19 @@ int main (){
     int t = time(0);
     srand(t);
 
-    cout << rand() % 21 << endl;
-    
+    // element chosen vectors
+    vector<int> r_selector; vector<int> n_selector;
+
+    while (r_selector.size() != 21 && n_selector.size() != 21){
+        int temp = rand() % 21;
+        if (is_in(r_selector, temp) == false){
+            r_selector.push_back(temp);
+        }
+        int temp2 = rand() % 21;
+        if (is_in(n_selector, temp2) == false){
+            n_selector.push_back(temp2);
+        }
+    }
+
+    // struct implementation
 }
