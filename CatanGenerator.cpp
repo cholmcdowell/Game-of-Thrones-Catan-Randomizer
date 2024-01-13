@@ -4,20 +4,21 @@
 #include <stdlib.h>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 using namespace std;
 
-// hold the number and resource of hex
+// struct
 struct hexx{
-    int num; string resc;
+    string resc; int num;
 };
 
 // print the hex with the passed in variables
-void print_hexx(hexx h){
+void print_hexx(string r, int n){
     cout << "      *     " << endl;
     cout << endl;
     cout << "*          *" << endl;
-    cout << "    " << endl; // 4 spaces
-    cout << "    " << endl; // 4 spaces
+    cout << "    " << r << "  "<< endl; // 4 spaces
+    cout << "      " << n << "  " << endl; // 4 spaces
     cout << "*          *" << endl;
     cout << endl;
     cout << "      *     " << endl;
@@ -79,16 +80,26 @@ int main (){
     // element chosen vectors
     vector<int> r_selector; vector<int> n_selector;
 
-    while (r_selector.size() != 21 && n_selector.size() != 21){
+    while (r_selector.size() != 21){
         int temp = rand() % 21;
         if (is_in(r_selector, temp) == false){
             r_selector.push_back(temp);
         }
+    }
+
+    while (n_selector.size() != 21){
         int temp2 = rand() % 21;
         if (is_in(n_selector, temp2) == false){
             n_selector.push_back(temp2);
         }
     }
 
+    ofstream outf("test.txt");
+
+    outf << "howdy";
+    outf.close();
+
+
     // struct implementation
+    
 }
