@@ -7,22 +7,76 @@
 #include <fstream>
 using namespace std;
 
-// struct
-struct hexx{
-    string resc; int num;
-};
 
-// print the hex with the passed in variables
-void print_hexx(string r, int n){
-    cout << "      *     " << endl;
-    cout << endl;
-    cout << "*          *" << endl;
-    cout << "    " << r << "  "<< endl; // 4 spaces
-    cout << "      " << n << "  " << endl; // 4 spaces
-    cout << "*          *" << endl;
-    cout << endl;
-    cout << "      *     " << endl;
-}
+// print hex row
+void print_row(ofstream& of, vector<string> r, vector<int> r_s,
+    vector<int> n, vector<int> n_s, int num_spaces, int hexes, int s, int e){
+    for (int i = 0; i < num_spaces; i++){
+        of << " ";
+    }
+    for (int i = 0; i < hexes; i++){
+        of << "      *     ";
+    }
+    of << endl;
+    for (int i = 0; i < num_spaces; i++){
+            of << " ";
+    }
+    for (int i = 0; i < hexes; i++){
+        
+        if (i == 0){
+            of << "*          *";
+        }
+        else{
+            of << "           *";
+        }
+    }
+    of << endl;
+    for (int i = 0; i < num_spaces; i++){
+            of << " ";
+    }
+    for (int i = s; i < e; i++){
+        if (r.at(r_s.at(i)) == "WOOD"){
+            of << "    " << r.at(r_s.at(i)) << "    ";
+        }
+        else{
+            of << "    " << r.at(r_s.at(i)) << "   ";
+        }
+        
+    }
+    of << endl;
+    for (int i = 0; i < num_spaces; i++){
+            of << " ";
+    }
+    for (int i = s; i < e; i++){
+        if (n.at(n_s.at(i)) < 10){
+            of << "      " << n.at(n_s.at(i)) << "     ";
+        }
+        else{
+            of << "     " << n.at(n_s.at(i)) << "     ";
+        }    
+    }
+    of << endl;
+    for (int i = 0; i < num_spaces; i++){
+            of << " ";
+    }
+    for (int i = 0; i < hexes; i++){\
+        if (i == 0){
+            of << "*          *";
+        }
+        else{
+            of << "           *";
+
+        }
+    }
+    of << endl;
+    for (int i = 0; i < num_spaces; i++){
+            of << " ";
+    }
+    for (int i = 0; i < hexes; i++){
+        of << "      *     ";
+    }
+    of << endl;
+    }
 
 // check if a number is in vector
 bool is_in(vector<int> v, int r){
@@ -94,12 +148,20 @@ int main (){
         }
     }
 
+    // create map
     ofstream outf("test.txt");
 
-    outf << "howdy";
-    outf.close();
+    // top 4 hexes
+    print_row(outf, resources, r_selector, numbers, n_selector, 15,4,0,4);
 
+    // top-middle 5 hexes
+    print_row(outf, resources, r_selector, numbers, n_selector, 10,5,4,9);
 
-    // struct implementation
+    // bot-middle 6 hexes
+    print_row(outf, resources, r_selector, numbers, n_selector, 5,6,9,15);
+
+    // bot6 hexes
+    print_row(outf, resources, r_selector, numbers, n_selector, 0,6,15,21);
     
+    outf.close();  
 }
